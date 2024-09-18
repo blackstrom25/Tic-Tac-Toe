@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.board{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box{
+    margin: 0.2rem;
+    height: 10rem;
+    width: 10rem;
+    border: 1px solid black;
+}
