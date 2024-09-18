@@ -1,0 +1,111 @@
+:root{
+    /*setting custom variables*/
+    --box-height: 10rem;
+    --box-width: 10rem;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 50rem;
+}
+
+.box{
+    margin: 0.2rem;
+    position: relative;
+    /*using those custom variables*/
+    height: var(--box-height);
+    width: var(--box-width);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.break{
+    flex-basis: 100%;
+}
+
+/*this style applies when the board has the playerX class and applies on the boxes hover state*/
+/*.board.playerX .box:hover*/
+
+/*this style applies to the .box element of board with the playerX class, which do not have the playerX or playerO class*/
+/*.board.playerX .box:not(.playerX):not(.playerO)*/
+
+.box.playerX::before,
+.box.playerX::after,
+.board.playerX .box:not(.playerX):not(.playerO):hover::before,
+.board.playerX .box:not(.playerX):not(.playerO):hover::after{
+    content: "";
+    position: absolute;
+    /*calculating and width to 0.15 of the box width*/
+    width: calc(var(--box-height) * 0.15);
+    height: var(--box-height);
+    background-color: black;
+    border-radius: 10px;
+}
+
+.box.playerX::before,
+.board.playerX .box:not(.playerX):not(.playerO):hover::before{
+    transform: rotate(-45deg);
+}
+
+.box.playerX::after,
+.board.playerX .box:not(.playerX):not(.playerO):hover::after{
+    transform: rotate(45deg);
+}
+
+.box.playerO::before,
+.box.playerO::after,
+.board.playerO .box:not(.playerX):not(.playerO):hover,
+.board.playerO .box:not(.playerX):not(.playerO):hover{
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.box.playerO::before,
+.board.playerO .box:not(.playerX):not(.playerO):hover::after{
+    width: calc(var(--box-height) * 0.9);
+    height: calc(var(--box-height) * 0.9);
+    background-color: black;
+}
+
+.box.playerO::after,
+.board.playerO .box:not(.playerX):not(.playerO):hover::after{
+    width: calc(var(--box-height) * 0.6);
+    height: calc(var(--box-height) * 0.6);
+    background-color: white;
+}
+
+
+.finalMessage{
+    display: none;
+    position: absolute;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(167, 206, 217, 0.36);
+    z-index: 2;
+}
+
+.finalText{
+    position: relative;
+    top: 50%;
+}
+
+.replay{
+    position: relative;
+    top: 54%;
+}
